@@ -36,10 +36,10 @@ jobs:
             ghcr.io/antonbabenko/pre-commit-terraform:v1.96.1 run terraform_tflint --all-files
 
       - name: Run Pre-Commit Terraform FMT
-        if: steps.changed-files.outputs.any_changed == 'true'
+        #if: steps.changed-files.outputs.any_changed == 'true'
         run: |
           docker run \
             -e "USERID=${{ env.USERID }}" \
             -v "${{ github.workspace }}":/lint \
             -w /lint \
-            ghcr.io/antonbabenko/pre-commit-terraform:v1.96.1 run terraform_fmt --files ${{ steps.changed-files.outputs.all_changed_files }}
+            ghcr.io/antonbabenko/pre-commit-terraform:v1.96.1 run terraform_fmt --all-files
