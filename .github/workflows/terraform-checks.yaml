@@ -27,7 +27,7 @@ jobs:
         run: echo "USERID=$(id -u):$(id -g)" >> $GITHUB_ENV
 
       - name: Run Pre-Commit TFLint
-        if: steps.changed-files.outputs.any_changed == 'true'
+        #if: steps.changed-files.outputs.any_changed == 'true'
         run: |
           docker run \
             -e "USERID=${{ env.USERID }}" \
@@ -36,7 +36,7 @@ jobs:
             ghcr.io/antonbabenko/pre-commit-terraform:v1.96.1 run terraform_tflint --files ${{ steps.changed-files.outputs.all_changed_files }}
 
       - name: Run Pre-Commit Terraform FMT
-        if: steps.changed-files.outputs.any_changed == 'true'
+        #if: steps.changed-files.outputs.any_changed == 'true'
         run: |
           docker run \
             -e "USERID=${{ env.USERID }}" \
